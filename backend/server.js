@@ -53,13 +53,13 @@ if (process.env.NODE_ENV !== 'test') {
 }
 
 // Body parsing
-app.use(express.json({ limit: '10mb' }));
+app.use(express.json({ limit: '100mb' }));
 app.use(express.urlencoded({ extended: true }));
 
-// Global rate limiter — 200 requests per 15 min
+// Global rate limiter — 1000 requests per 15 min
 const limiter = rateLimit({
     windowMs: 15 * 60 * 1000,
-    max: 200,
+    max: 1000,
     message: { error: 'Too many requests, please try again later.' },
     standardHeaders: true,
     legacyHeaders: false,
